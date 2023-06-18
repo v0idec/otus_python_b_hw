@@ -11,7 +11,6 @@ def power_numbers(*numbers):
 #    >>> power_numbers(1, 2, 5, 7)
     <<< [1, 4, 25, 49]
     """
-    #   g = [i ** 2 for i in numbers]
     return [i ** 2 for i in numbers]
 
 
@@ -21,8 +20,25 @@ EVEN = "even"
 PRIME = "prime"
 
 
+def prime(nums_prime):
+    res = []
+    for i in nums_prime:
+        if i <= 1:
+            print('Incorrect nums', i)
+        else:
+            counter = 0
+            i_list = list(range(2, i))
+            for n in i_list:
+                g = i / n
+                chk = float(g).is_integer()
+                if chk is True:
+                    counter = counter + 1
+            if counter == 0:
+                res.append(i)
+    return res
+
+
 def filter_numbers(nums, state):
-    print(state)
     """
     функция, которая на вход принимает список из целых чисел,
     и возвращает только чётные/нечётные/простые числа
@@ -38,19 +54,23 @@ def filter_numbers(nums, state):
     elif state == EVEN:
         return [i for i in nums if i % 2 == 0]
     elif state == PRIME:
-        res = []
-        for i in nums:
-            if i <= 1:
-                print ('Incorrect nums', i)
-            else:
-                counter = 0
-                i_list = list(range(2, i))
-                for n in i_list:
-                    g = i / n
-                    chk = float(g).is_integer()
-                    if chk is True:
-                        counter = counter + 1
-                if counter == 0:
-                    res.append(i)
-        return res
+        g = prime(nums)
+        #     res = []
+        #     for i in nums:
+        #         if i <= 1:
+        #             print ('Incorrect nums', i)
+        #         else:
+        #             counter = 0
+        #             i_list = list(range(2, i))
+        #             for n in i_list:
+        #                 g = i / n
+        #                 chk = float(g).is_integer()
+        #                 if chk is True:
+        #                     counter = counter + 1
+        #             if counter == 0:
+        #                 res.append(i)
+        return g
 
+
+list_of_nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+print(filter_numbers(list_of_nums, PRIME))
