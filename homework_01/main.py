@@ -34,9 +34,9 @@ def filter_numbers(nums, state):
     <<< [2, 4]
     """
     if state == ODD:
-        return [i for i in nums if i % 2 == 0]
-    elif state == EVEN:
         return [i for i in nums if i % 2 != 0]
+    elif state == EVEN:
+        return [i for i in nums if i % 2 == 0]
     elif state == PRIME:
         res = []
         for i in nums:
@@ -52,9 +52,5 @@ def filter_numbers(nums, state):
                         counter = counter + 1
                 if counter == 0:
                     res.append(i)
-    return res
+        return res
 
-
-nums1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-h = filter_numbers(nums1, EVEN)
-print(h)
