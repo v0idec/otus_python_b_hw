@@ -29,7 +29,7 @@ class Vehicle(ABC):
         self.fuel = fuel
         self.fuel_consumption = fuel_consumption    
 
-    def start(self):
+    def start(self, started):
         fuel = 10
         self.started = started
         print(started)
