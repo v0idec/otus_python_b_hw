@@ -6,15 +6,17 @@
 """
 
 
-def check_fuel(fuel: int):
-    try:
-        if fuel > 5:
-            print("Fuel Ok")
-            return fuel
-    except LowFuelError:
-        if fuel <= 5:
-            print(LowFuel)
-            return fuel
-    else:
-        print("NotEnoughFuel")
-        return fuel
+class LowFuelError(Exception):
+    def __init__(self, message: str):
+        self.message = message
+
+
+class NotEnoughFuel(Exception):
+    def __init__(self, message: str):
+        self.message = message
+
+
+class CargoOverload(Exception):
+    def __init__(self, message: str):
+        self.message = message
+
