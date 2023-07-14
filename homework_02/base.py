@@ -1,6 +1,6 @@
 from abc import ABC
-from exceptions import LowFuelError, CargoOverload, NotEnoughFuel
-
+from homework_02.exceptions import LowFuelError, NotEnoughFuel
+#from exceptions import LowFuelError, NotEnoughFuel
 
 class Vehicle(ABC):
     weight = 0
@@ -11,18 +11,26 @@ class Vehicle(ABC):
     def __init__(self, weight: int, fuel: int, fuel_consumption: int) -> None:
         self.weight = weight
         self.fuel = fuel
-        self.fuel_consumption = fuel_consumption      
+        self.fuel_consumption = fuel_consumption    
 
-    def start(self, started: bool, fuel: int):
-        self.started = started
-        if started is False:
-            if fuel > 0:
-                message = "Car started"
-                started = True
-                print(message)
+    def start(self):
+            if self.started is False:
+                    if self.fuel > 0:
+                            self.started = True
+                    else: 
+                        raise LowFuelError
             else:
-                message = "Uebok"
-                raise LowFuelError(message=message)
-
-    def move(self, fuel: int, fuel_consumption: int):
-        pass
+                print("Already stated")
+ 
+    def move(self, distance):
+        max_distance = self.fuel - self.fuel_consumption*distance
+        print(max_distance)
+        if distance <= max_distance:
+            while self.fuel > 0:
+                    self.fuel -= self.fuel_consumption
+                    print(self.fuel)
+                    distance -= 1
+                    print(distance)
+        else:
+            raise NotEnoughFuel
+                
