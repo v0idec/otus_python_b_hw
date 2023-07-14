@@ -1,6 +1,5 @@
 from abc import ABC
 from homework_02.exceptions import LowFuelError, NotEnoughFuel
-#from exceptions import LowFuelError, NotEnoughFuel
 
 class Vehicle(ABC):
     weight = 0
@@ -20,17 +19,14 @@ class Vehicle(ABC):
                     else: 
                         raise LowFuelError
             else:
-                print("Already stated")
+                pass
  
     def move(self, distance):
-        max_distance = self.fuel - self.fuel_consumption*distance
-        print(max_distance)
-        if distance <= max_distance:
-            while self.fuel > 0:
+        max_consumption = distance * self.fuel_consumption 
+        if self.fuel >= max_consumption:
+            while distance > 0:
                     self.fuel -= self.fuel_consumption
-                    print(self.fuel)
                     distance -= 1
-                    print(distance)
         else:
             raise NotEnoughFuel
                 
